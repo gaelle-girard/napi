@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .container-fluid.h-100
+    .row.text-center.justify-content-center.h-auto
+      h1= title
+      p #{title} : Un langage, une recherche, des dépôts GitHub.
+
+    .row.flex-grow
+      form.row.g-3.justify-content-center(action='/' method='GET')
+        div.col-auto
+          input.form-control(autofocus='' value=`${searchQuery || ''}` placeholder=`${langExample}` type='search' name='q')
+        div.col-auto
+          button.btn.btn-primary Rechercher

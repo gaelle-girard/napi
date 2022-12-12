@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    .container.h-100
+        h1= title
+
+        .container
+            if !searchResults || !searchResults.nbHits
+                p Aucun résultat. C'est embêtant.
+            else
+                ul.list-group
+                    each repo in searchResults.hits
+                        li.list-group-item
+                            div
+                                a.link-primary(target='_blank' rel='noreferrer noopener' href=`${repo.clone_url}`)
+                                    h3 #{repo.name}
+                                each val, key in repo.languages
+                                    if key.toLowerCase() === searchQuery.toLowerCase()
+                                        |
+                                        p
+                                            strong #{key} : #{val} lignes
+                                    else
+                                        |
+                                        p #{key} :  #{val} lignes
